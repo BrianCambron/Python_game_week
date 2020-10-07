@@ -17,11 +17,11 @@ while attempts > 0:
         else:
             full_word = full_word + '_ '
     if full_word == word:
-        print('You guessed it!', word)
+        print('You guessed the word!', word)
         break
-    guess = input('Enter a letter: ').lower()
+    guess = input('Let\'s play some HangMan! \n Enter a letter: ').lower()
 
-    print('Guess the word!', '\n', full_word)
+    print(full_word)
 
     if guess in guessed_letters or guess in wrong_guesses: #checks to see if the letter has already been guessed
         print('You already guessed that letter: ', guess)
