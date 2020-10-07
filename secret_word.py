@@ -5,21 +5,36 @@ with open ('/usr/share/dict/words') as infile:
     word = random.choice(infile).lower()
 # print(word)
 
-full_word = '_ ' * len(word)
 guessed_letters = []
+wrong_guesses = []
 attempts = 10
-print('Guess the word!')
-print(full_word, '\n')
 
 while attempts > 0:
-
+    full_word = ''
+    for letter in word:
+        if letter in guessed_letters:
+            full_word = full_word + letter
+        else:
+            full_word = full_word + '_ '
+    if full_word == word:
+        print('You guessed it!', word)
+        break
     guess = input('Enter a letter: ').lower()
-    # guessed_letters.append(guess)
-    # print(guessed_letters)
+
+    print('Guess the word!', '\n', full_word)
+
+    if guess in guessed_letters or guess in wrong_guesses: #checks to see if the letter has already been guessed
+        print('You already guessed that letter: ', guess)
+
+    if guess in word:
+        guessed_letters.append(guess)
+    elif not guess in word:
+        wrong_guesses.append(guess)
+        attempts -= 1
+    if attempts == 0:
+        print('You ran out of attempts! The word was:', word)
+        break
     if len(guess) > 1: #checks to see if user is only inputting 1 letter
         print('Enter only 1 letter')
     elif not guess.isalpha(): #makes sure the user is not inputting anything other than a letter
         print('Enter a letter only')
-    elif guess in guessed_letters: #makes sure the same letter is not used twice
-        print('Letter has already been used')
-    for letter in word:
