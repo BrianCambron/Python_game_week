@@ -8,6 +8,7 @@ with open ('/usr/share/dict/words') as infile:
 guessed_letters = []
 wrong_guesses = []
 attempts = 10
+print('Let\'s play some HangMan! \n')
 
 while attempts > 0:
     full_word = ''
@@ -19,7 +20,7 @@ while attempts > 0:
     if full_word == word:
         print('You guessed the word!', word)
         break
-    guess = input('Let\'s play some HangMan! \n Enter a letter: ').lower()
+    guess = input('Enter a letter: ').lower()
 
     print(full_word)
 
@@ -31,6 +32,7 @@ while attempts > 0:
     elif not guess in word:
         wrong_guesses.append(guess)
         attempts -= 1
+        print('You have', attempts, 'attempts left')
     if attempts == 0:
         print('You ran out of attempts! The word was:', word)
         break
